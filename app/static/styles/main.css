@@ -8,45 +8,101 @@ body {
     width: auto; 
     overflow-x: hidden;
     font-family: "Roboto", serif;
-    margin: 0px;
+    margin: 0;
+    padding-top: 70px; /* Add padding to account for fixed navbar */
 }
 
 .nav-bar {
-    width: 100%;
-    display: inline-block;
     background-color: #1C539F;
-    font-family: "Roboto", serif;
-    font-weight: 700 !important;
-    padding-top: 10px;
+    padding: 0.5rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.nav-content .logo-touch-target {
-    display: inline-flex;
-    height: 60%;
-    width: 350px;
-}
-
-.nav-content .nav-logo {
-    height: 60px;
-    margin: auto;
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
 }
 
 .nav-logo {
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 .nav-logo img {
-    width: 200px;
+    height: 40px;
+    width: auto;
+    transition: transform 0.3s ease;
 }
 
-.nav-content nav {
-    display: block;
+.nav-logo:hover img {
+    transform: scale(1.05);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #FFD700;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
     width: 100%;
-    text-align: right;
-    padding-top: 0px;
-    padding-right: 0px;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #FFD700;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+@media (max-width: 768px) {
+    .nav-content {
+        padding: 0 1rem;
+    }
+    
+    .nav-logo img {
+        height: 35px;
+    }
+    
+    .nav-links li {
+        margin-left: 1.5rem;
+    }
 }
 
 .profile {
@@ -322,18 +378,21 @@ body {
 
 /* Education Section */
 .education {
-    padding: 60px 0;
-    background-color: #fff;
-    margin: 0 auto;
-    max-width: 1200px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
+padding: 60px 0;
+background-color: #fff;
+margin: 0 auto;
+max-width: 1200px;
+border-radius: 8px;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+margin-bottom: 40px;
 }
 
 .education h2 {
-    text-align: center;
-    color: #1C539F;
+text-align: center;
+color: #1C539F;
+font-size: 36px;
+margin-bottom: 50px;
+font-weight: 700;
     font-size: 36px;
     margin-bottom: 50px;
     font-weight: 700;
@@ -445,12 +504,26 @@ body {
     .education-content {
         padding: 20px;
     }
+    
+    .education-logo {
+        width: 100%;
+        padding: 15px;
+    }
+    
+    .education-logo img {
+        max-width: 50px;
+        max-height: 50px;
+    }
+    
+    .education-content {
+        padding: 20px;
+    }
 }
 
-/* Travel Map Section */
-.travel-map {
+/* Hobbies Section */
+.hobbies {
     padding: 60px 0;
-    background-color: white;
+    background-color: #f8f9fa;
     margin: 0 auto;
     max-width: 1200px;
     border-radius: 8px;
@@ -458,10 +531,111 @@ body {
     margin-bottom: 40px;
 }
 
+.hobbies h2 {
+    text-align: center;
+    color: #1C539F;
+    font-size: 36px;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hobby-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.hobby-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.hobby-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.hobby-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.hobby-card:hover .hobby-image img {
+    transform: scale(1.05);
+}
+
+.hobby-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.hobby-content h3 {
+    color: #1C539F;
+    margin: 0 0 10px 0;
+    font-size: 20px;
+}
+
+.hobby-content p {
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 15px;
+}
+
+@media (max-width: 768px) {
+    .hobbies-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .hobby-image {
+        height: 180px;
+    }
+}
+
+/* Travel Map Section */
+.travel-map {
+    padding: 60px 0;
+    background-color: #fff;
+    margin: 0 auto;
+    max-width: 1200px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.travel-map .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 .travel-map h2 {
     text-align: center;
     color: #1C539F;
     font-size: 36px;
+    margin-bottom: 40px;
     margin-bottom: 30px;
     font-weight: 700;
 }
