@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="My Hobbies">
+    <meta property="og:description" content="Check out my hobbies and interests">
+    <meta property="og:url" content="{{ url_for('hobbies') }}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon" />
+    <title>My Hobbies - {{ title }}</title>
+</head>
+
+<body>
+    <header class="nav-bar">
+        <div class="nav-content">
+            <a href="{{ url_for('home') }}" class="nav-logo">
+                <img src="{{ url_for('static', filename='img/favicon.ico') }}" alt="Home">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('hobbies') }}" class="active">Hobbies</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="profile">
+        <h1>My Hobbies</h1>
+        <p style="color: white; font-size: 1.2rem; margin-top: 10px;">Discover what I love to do in my free time</p>
+    </div>
+
+    <section class="hobbies">
+        <div class="container">
+            <div class="hobbies-grid">
+                <div class="hobby-card">
+                    <div class="hobby-image">
+                        <img src="{{ url_for('static', filename='img/frisbee.png') }}" alt="Ultimate Frisbee">
+                    </div>
+                    <div class="hobby-content">
+                        <h3>Ultimate Frisbee</h3>
+                        <p>Competitive player in high school. Love the fast-pace involved in the sport.</p>
+                    </div>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-image">
+                        <img src="{{ url_for('static', filename='img/osu.jpg') }}" alt="osu! Game">
+                    </div>
+                    <div class="hobby-content">
+                        <h3>osu!mania</h3>
+                        <p>Former #1 in Canada, #36 in the world. </p>
+                    </div>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-image">
+                        <img src="{{ url_for('static', filename='img/piano.jpg') }}" alt="Piano">
+                    </div>
+                    <div class="hobby-content">
+                        <h3>Piano</h3>
+                        <p>Played for 15 years, I enjoy fun and pop songs over classical pieces.</p>
+                    </div>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-image">
+                        <img src="{{ url_for('static', filename='img/wordhunt.jpg') }}" alt="Word Hunt Game">
+                    </div>
+                    <div class="hobby-content">
+                        <h3>Word Hunt</h3>
+                        <p>Highscore of 46000.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
