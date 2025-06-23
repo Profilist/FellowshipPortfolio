@@ -319,3 +319,76 @@ body {
         right: auto;
     }
 }
+
+/* Travel Map Section */
+.travel-map {
+    padding: 60px 0;
+    background-color: white;
+    margin: 0 auto;
+    max-width: 1200px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.travel-map h2 {
+    text-align: center;
+    color: #1C539F;
+    font-size: 36px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Custom marker styles */
+.custom-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Popup styling */
+.leaflet-popup-content {
+    margin: 8px 12px;
+    font-family: "Roboto", sans-serif;
+}
+
+.leaflet-popup-content b {
+    color: #1C539F;
+}
+
+.leaflet-popup-tip,
+.leaflet-popup-content-wrapper {
+    background: #fff;
+    color: #333;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #map {
+        height: 400px;
+    }
+    
+    .travel-map h2 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    #map {
+        height: 300px;
+    }
+}

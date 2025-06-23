@@ -13,6 +13,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
 
     <link lang='sass' rel="stylesheet" href="./static/styles/main.css">
     <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
@@ -107,5 +110,65 @@
             </div>
         </div>
     </section>
+
+    <section class="travel-map">
+        <div class="container">
+            <h2>Places I've Visited</h2>
+            <div id="map"></div>
+        </div>
+    </section>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+    <script>
+        // Initialize the map
+        const map = L.map('map').setView([30, 0], 2);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Custom icon
+        const customIcon = L.divIcon({
+            className: 'custom-icon',
+            iconSize: [20, 20],
+            iconAnchor: [10, 10],
+            popupAnchor: [0, -10],
+            html: '📍'
+        });
+
+        // Places with coordinates [lat, lng]
+        const places = [
+            { name: 'France', coords: [46.2276, 2.2137] },
+            { name: 'Spain', coords: [40.4637, -3.7492] },
+            { name: 'Italy', coords: [41.8719, 12.5674] },
+            { name: 'China', coords: [35.8617, 104.1954] },
+            { name: 'Hawaii', coords: [19.8968, -155.5828] },
+            { name: 'Las Vegas', coords: [36.1699, -115.1398] },
+            { name: 'Florida', coords: [27.6648, -81.5158] },
+            { name: 'New York City', coords: [40.7128, -74.0060] },
+            { name: 'Montreal', coords: [45.5017, -73.5673] },
+            { name: 'Ottawa', coords: [45.4215, -75.6972] },
+            { name: 'Toronto', coords: [43.6511, -79.3470] },
+            { name: 'Alberta', coords: [53.9333, -116.5765] },
+            { name: 'Cuba', coords: [21.5218, -77.7812] },
+            { name: 'Puerto Rico', coords: [18.2208, -66.5901] },
+            { name: 'Japan', coords: [36.2048, 138.2529] }
+        ];
+
+        // Add markers for each place
+        places.forEach(place => {
+            L.marker(place.coords, { icon: customIcon })
+                .addTo(map)
+                .bindPopup(`<b>${place.name}</b>`);
+        });
+
+        // Fit map to show all markers
+        const group = L.featureGroup(places.map(place => L.marker(place.coords)));
+        map.fitBounds(group.getBounds().pad(0.1));
+    </script>
 </body>
 </html>
