@@ -29,7 +29,10 @@ class TimelinePost(Model):
     
     class Meta:
         database = mydb
+        
+MODELS = [TimelinePost] 
     
+mydb.bind(MODELS, bind_refs=False, bind_backrefs=False)
 mydb.connect()
 mydb.create_tables([TimelinePost])
 
