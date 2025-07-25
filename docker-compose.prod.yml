@@ -1,5 +1,5 @@
 services:
-  myporfolio:
+  myportfolio:
     container_name: myportfolio
     build: .
     restart: always
