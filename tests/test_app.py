@@ -1,8 +1,9 @@
 import unittest
 import os
-import app
 
 os.environ['TESTING'] = 'true'
+
+import app
 
 class AppTestCase(unittest.TestCase):
     def setUp(self):
