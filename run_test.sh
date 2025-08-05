@@ -2,7 +2,7 @@
 
 echo "Testing database..."
 
-python -m unittest tests.test_db
+python3-virtualenv/bin/python -m unittest tests.test_db
 
 if [ $? -eq 0 ]; then
     echo "Database tests passed"
@@ -13,7 +13,7 @@ fi
 
 echo "Testing app..."
 
-python -m unittest tests.test_app
+python3-virtualenv/bin/python -m unittest tests.test_app
 
 if [ $? -eq 0 ]; then
     echo "App tests passed"

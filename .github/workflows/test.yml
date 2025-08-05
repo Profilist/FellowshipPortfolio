@@ -22,7 +22,7 @@ jobs:
                 python-version: 3.12
             
             - name: Setup Python Virtual Environment
-              run: python -m venv python3-virtualenv && source python3-virtualenv/bin/activate
+              run: python -m venv python3-virtualenv
 
             - name: Install dependencies
               run: python3-virtualenv/bin/pip install -r requirements.txt
