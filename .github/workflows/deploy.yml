@@ -27,5 +27,5 @@ jobs:
                     IdentityFile ~/.ssh/deploy-key.pem
                     StrictHostKeyChecking no
                 END
-            - name: Print project root directory
-              run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && pwd'
+            - name: Deploy site
+              run: ssh my-vps '~/redeploy.sh'
