@@ -27,5 +27,13 @@ jobs:
                     IdentityFile ~/.ssh/deploy-key.pem
                     StrictHostKeyChecking no
                 END
+          
             - name: Deploy site
               run: ssh my-vps '~/redeploy-site.sh'
+
+            - name: Notify Discord - Success
+              run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
+            
+            - name: Notify Discord - Failure
+              if: failure()
+              run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚨 Deployment Failed"
