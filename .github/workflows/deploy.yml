@@ -28,4 +28,4 @@ jobs:
                     StrictHostKeyChecking no
                 END
             - name: Deploy site
-              run: ssh my-vps '~/redeploy.sh'
+              run: ssh my-vps '~/redeploy-site.sh'
