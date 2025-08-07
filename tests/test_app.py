@@ -1,9 +1,10 @@
 import unittest
 import os
 
-os.environ['TESTING'] = 'true'
+os.environ["TESTING"] = "true"
 
 import app
+
 
 class AppTestCase(unittest.TestCase):
     def setUp(self):
@@ -26,11 +27,14 @@ class AppTestCase(unittest.TestCase):
         self.assertIn("Timeline", html)
 
     def test_timeline_api(self):
-        response = self.client.post("/api/timeline_post", data={
-            "name": "Test User",
-            "email": "test@example.com",
-            "content": "Test post content"
-        })
+        response = self.client.post(
+            "/api/timeline_post",
+            data={
+                "name": "Test User",
+                "email": "test@example.com",
+                "content": "Test post content",
+            },
+        )
         self.assertEqual(response.status_code, 200)
 
         response = self.client.get("/api/timeline_post")
@@ -49,10 +53,9 @@ class AppTestCase(unittest.TestCase):
         self.assertIn("name=", html)
 
     def test_malformed_timeline_post(self):
-        response = self.client.post("/api/timeline_post", data={
-            "name": "",
-            "email": "not-an-email",
-            "content": ""
-        })
+        response = self.client.post(
+            "/api/timeline_post",
+            data={"name": "", "email": "not-an-email", "content": ""},
+        )
         self.assertEqual(response.status_code, 400)
         self.assertIn("Invalid", response.get_data(as_text=True))

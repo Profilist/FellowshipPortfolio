@@ -1,13 +1,14 @@
 import unittest
 import os
-from peewee import *
+from peewee import SqliteDatabase
 
-os.environ['TESTING'] = 'true'
+os.environ["TESTING"] = "true"
 
 from app import TimelinePost
 
 MODELS = [TimelinePost]
-test_db = SqliteDatabase(':memory:')
+test_db = SqliteDatabase(":memory:")
+
 
 class TestTimelinePost(unittest.TestCase):
     def setUp(self):
@@ -20,13 +21,17 @@ class TestTimelinePost(unittest.TestCase):
         test_db.close()
 
     def test_timeline_post(self):
-        first_post = TimelinePost.create(name='John Doe', email='john@example.com', content='Hello world, I\'m John!')
+        first_post = TimelinePost.create(
+            name="John Doe", email="john@example.com", content="Hello world, I'm John!"
+        )
         self.assertEqual(first_post.id, 1)
 
-        second_post = TimelinePost.create(name='Jane Doe', email='jane@example.com', content='Hello world, I\'m Jane!')
+        second_post = TimelinePost.create(
+            name="Jane Doe", email="jane@example.com", content="Hello world, I'm Jane!"
+        )
         self.assertEqual(second_post.id, 2)
 
         all_posts = TimelinePost.select().order_by(TimelinePost.id.asc())
         self.assertEqual(all_posts.count(), 2)
-        self.assertEqual(all_posts[0].name, 'John Doe')
-        self.assertEqual(all_posts[1].email, 'jane@example.com')
+        self.assertEqual(all_posts[0].name, "John Doe")
+        self.assertEqual(all_posts[1].email, "jane@example.com")
